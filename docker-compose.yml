@@ -1,0 +1,113 @@
+version: "3.8"
+
+services:
+  # Ocean Protocol Node
+  ocean-node:
+    image: oceanprotocol/ocean-node:latest
+    container_name: ai-platform-ocean-node
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      PRIVATE_KEY: "${PRIVATE_KEY}"
+      RPCS: |
+        {
+          "1": {
+            "rpc": "https://ethereum-rpc.publicnode.com",
+            "fallbackRPCs": ["https://rpc.ankr.com/eth"],
+            "chainId": 1,
+            "network": "mainnet",
+            "chunkSize": 100
+          }
+        }
+      INTERFACES: '["HTTP", "P2P"]'
+      HTTP_API_PORT: "8000"
+      P2P_ENABLE_IPV4: "true"
+      P2P_ipV4BindTcpPort: "9000"
+      P2P_ipV4BindWsPort: "9001"
+      ALLOWED_ADMINS: '["0x01FfEeCBF5eC879990c6ac2eb9dFEC87F20b025d"]'
+      ALLOW_FREE: "true"
+      FREE_CALLS: "1000000"
+    volumes:
+      - ocean-data:/usr/src/app/databases
+    restart: unless-stopped
+    networks:
+      - ai-platform-network
+
+  # Typesense for Ocean Node
+  typesense:
+    image: typesense/typesense:26.0
+    container_name: ai-platform-typesense
+    ports:
+      - "8108:8108"
+    environment:
+      TYPESENSE_API_KEY: "xyz"
+      TYPESENSE_DATA_DIR: "/data"
+    volumes:
+      - typesense-data:/data
+    command: --data-dir /data --api-key=xyz
+    restart: unless-stopped
+    networks:
+      - ai-platform-network
+
+  # AI Services (Agent + Post-processing)
+  ai-services:
+    build:
+      context: .
+      dockerfile: Dockerfile.ai-services
+    container_name: ai-platform-ai-services
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - ASI1_MINI_API_KEY=${ASI1_MINI_API_KEY}
+      - OCEAN_PRIVATE_KEY=${OCEAN_PRIVATE_KEY}
+      - OCEAN_NODE_URL=http://ocean-node:8000
+    depends_on:
+      - ocean-node
+    restart: unless-stopped
+    networks:
+      - ai-platform-network
+
+  # Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: ai-platform-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_OCEAN_NODE_URL=http://localhost:8000
+      - NEXT_PUBLIC_AI_SERVICES_URL=http://localhost:4000
+    depends_on:
+      - ocean-node
+      - ai-services
+    restart: unless-stopped
+    networks:
+      - ai-platform-network
+
+  # Nginx Reverse Proxy
+  nginx:
+    image: nginx:alpine
+    container_name: ai-platform-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - ocean-node
+      - ai-services
+    restart: unless-stopped
+    networks:
+      - ai-platform-network
+
+volumes:
+  ocean-data:
+  typesense-data:
+
+networks:
+  ai-platform-network:
+    driver: bridge

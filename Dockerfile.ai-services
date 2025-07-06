@@ -1,0 +1,32 @@
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /usr/src/app
+
+# Copy package files
+COPY package*.json ./
+COPY agent/package*.json ./agent/
+COPY postprocessing/package*.json ./postprocessing/
+
+# Install dependencies
+RUN npm install
+RUN cd agent && npm install
+RUN cd postprocessing && npm install
+
+# Copy source code
+COPY agent/ ./agent/
+COPY postprocessing/ ./postprocessing/
+
+# Build TypeScript code
+RUN npm run build
+RUN cd agent && npm run build
+RUN cd postprocessing && npm run build
+
+# Copy the AI services server
+COPY ai-services-server.js ./server.js
+
+# Expose port
+EXPOSE 4000
+
+# Start the server
+CMD ["node", "server.js"] 

@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-07-05T23:36:36.495Z",
+  "status": "deployed",
+  "host": "81.15.150.43",
+  "address": "0x01FfEeCBF5eC879990c6ac2eb9dFEC87F20b025d",
+  "urls": {
+    "main": "http://81.15.150.43",
+    "frontend": "http://81.15.150.43:3000",
+    "oceanNode": "http://81.15.150.43:8000",
+    "agentServices": "http://81.15.150.43:4000",
+    "oceanAPI": "http://81.15.150.43/ocean",
+    "servicesAPI": "http://81.15.150.43/api"
+  },
+  "services": {
+    "frontend": "Running on port 3000",
+    "oceanNode": "Running on port 8000",
+    "agentServices": "Running on port 4000",
+    "nginx": "Running on port 80"
+  }
+}

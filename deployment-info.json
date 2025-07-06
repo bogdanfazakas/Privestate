@@ -1,0 +1,27 @@
+{
+  "timestamp": "2025-07-05T12:17:00.460Z",
+  "network": "development",
+  "publisher": "0xc09d1682126772365dcb22857d0fdca2317b5774",
+  "oceanNodeUrl": "https://ocean-node.fluence.dev",
+  "transactions": {
+    "dataset": "0x5d081bf92967e",
+    "algorithm": "0x2d4e054868c3c"
+  },
+  "assets": {
+    "dataset": {
+      "name": "Dubai Real Estate Properties Dataset",
+      "symbol": "REDATA",
+      "visible": true
+    },
+    "algorithm": {
+      "name": "Real Estate Average Price Calculator",
+      "symbol": "REALGO",
+      "visible": true
+    }
+  },
+  "computeToData": {
+    "enabled": true,
+    "accessLevel": "OPEN",
+    "freeAccess": true
+  }
+}

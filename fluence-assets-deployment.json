@@ -1,0 +1,32 @@
+{
+  "timestamp": "2025-07-05T22:54:17.711Z",
+  "fluenceNodeUrl": "https://ocean-node-ai-real-estate.fluence.network:8000",
+  "publisherAddress": "0x968d4670c346275edd5CC1A7535D14b631FFc49C",
+  "assets": {
+    "dataset": {
+      "did": "did:op:f31dd740701d348aaab1ff20b2aaaaee2363a4c6dc2f61ecf99d3507e3396652",
+      "transactionHash": "0x0c02d97142d7d25142025c5d574f6be604aac3fbebaa6c060e98d336f338e255",
+      "dataTokenAddress": "0x81304a94b6ce68cec85cd90b8dc3184dc26be732",
+      "nftAddress": "0xb3e903fff34c62b4b6fd666c9160b97856761265",
+      "timestamp": "2025-07-05T22:54:17.711Z",
+      "status": "published",
+      "accessUrl": "https://ocean-node-ai-real-estate.fluence.network:8000/api/v1/datasets/did:op:f31dd740701d348aaab1ff20b2aaaaee2363a4c6dc2f61ecf99d3507e3396652"
+    },
+    "algorithm": {
+      "did": "did:op:94b0dd18b317606b2d27af4c08147d7945ce93e60b5947b880fdd517bfa3fa35",
+      "transactionHash": "0x801e0af2a45d57f8dcdd37e2a949c8fae5331950dc37600adfc40769611efed0",
+      "dataTokenAddress": "0x1712ae9886de07492d72aca779a421e55854715d",
+      "nftAddress": "0xbadbcfa3d90db22c48cae6ae5daeaf7690afd1ee",
+      "timestamp": "2025-07-05T22:54:17.711Z",
+      "status": "published",
+      "accessUrl": "https://ocean-node-ai-real-estate.fluence.network:8000/api/v1/algorithms/did:op:94b0dd18b317606b2d27af4c08147d7945ce93e60b5947b880fdd517bfa3fa35"
+    }
+  },
+  "c2dConfiguration": {
+    "freeAccess": true,
+    "maxJobDuration": 360000,
+    "maxJobs": 3,
+    "allowRawAlgorithm": true,
+    "allowNetworkAlgorithm": true
+  }
+}

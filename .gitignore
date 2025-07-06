@@ -1,0 +1,83 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+.env
+.env.*
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+dist/
+build/
+.next/
+out/
+.cache/
+
+# Logs
+logs/
+*.log
+
+# Ocean Protocol artifacts
+artifacts/
+ocean-artifacts/
+
+# Jupyter notebooks (if any)
+.ipynb_checkpoints/
+
+# Temporary
+*.tmp
+*.swp
+*.bak
+
+# Sensitive files and credentials
+fluence.env
+.env.local
+.env.production
+.env.development
+CREDENTIALS.md
+DEPLOYMENT.md
+fluence-private-key
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+config.json
+secrets.json
+api-keys.json
+private-keys.txt
+credentials.txt
+secret.txt
+auth.json
+.secrets/
+secrets/
+
+# SSH keys and SSH directories
+.ssh/
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+id_ecdsa
+id_ecdsa.pub
+id_dsa
+id_dsa.pub
+known_hosts
+authorized_keys
+*.pub
+ssh_host_*
+fluence-key
+fluence-key.pub
